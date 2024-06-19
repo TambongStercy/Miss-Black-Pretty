@@ -1,0 +1,282 @@
+<%- include("partials/header") %>
+    <style>
+        input,
+        textarea {
+            border: 1px solid #eeeeee;
+            box-sizing: border-box;
+            margin: 0;
+            outline: none;
+            padding: 10px;
+        }
+
+        input[type="button"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .input-group {
+            clear: both;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .input-group input[type='button'] {
+            background-color: #eeeeee;
+            min-width: 38px;
+            width: auto;
+            transition: all 300ms ease;
+        }
+
+        .input-group .button-minus,
+        .input-group .button-plus {
+            font-weight: bold;
+            height: 38px;
+            padding: 0;
+            width: 38px;
+            position: relative;
+        }
+
+        .input-group .quantity-field {
+            position: relative;
+            height: 38px;
+            left: -6px;
+            text-align: center;
+            width: 62px;
+            display: inline-block;
+            font-size: 13px;
+            margin: 0 0 5px;
+            resize: vertical;
+        }
+
+        .button-plus {
+            left: -13px;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            -webkit-appearance: none;
+        }
+    </style>
+
+    <% const categoryName=category.name; %>
+        <% const participants=category.participants; %>
+            <% const categoryImage=category.picture; %>
+
+                <section class="scrollable wrapper">
+                    <div class="row">
+                        <section>
+                            <div class="wrapper">
+                                <div class="title">
+                                    <%=categoryName%>
+                                </div>
+                                <div class="t-bg">
+                                    <table>
+                                        <thead>
+                                            <th>Id</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Color</th>
+                                            <th>Money</th>
+                                            <th>Votes</th>
+                                            <th>Modify</th>
+                                        </thead>
+                                        <tbody>
+                                            <% if(participants){ %>
+                                                <% participants.forEach((part)=>{ %>
+                                                    <% const {_id, name, picture, votes, category}=part; %>
+                                                        <tr>
+                                                            <td class="prdt-id">
+                                                                <%=_id%>
+                                                            </td>
+                                                            <td class="prdt-image"><img src="<%=picture%>"></td>
+                                                            <td class="prdt-name">
+                                                                <%= name %>
+                                                            </td>
+                                                            <td class="prdt-catg">
+                                                                <%= category %>
+                                                            </td>
+                                                            <td class="prdt-color">
+                                                                <div class="item-color"
+                                                                    style="background-color: purple;"></div>
+                                                            </td>
+                                                            <td class="prdt-price">
+                                                                <%= votes.length*100 %> XFA
+                                                            </td>
+                                                            <td class="prdt-quantity">
+                                                                <%= votes.length %>
+                                                            </td>
+                                                            <td>
+                                                                <button class="update">update</button>
+                                                                <button class="delete">vote manually</button>
+                                                                <button class="remove">remove vote</button>
+                                                            </td>
+                                                        </tr>
+                                                        <% }); %>
+                                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                    <button class="add-btn">+ Add new participants</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+                </section>
+                <!-- <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> -->
+                </section>
+                <!-- /.vbox -->
+                </section>
+                
+                <section class="modal mody">
+                    <div class="modal-content">
+                        <h1 class="sub-title">Add new participants</h1>
+                        <i class="uil uil-times modal-close"></i>
+                        <!-- <div class="my-img-container"> -->
+                        <form action="/admin/update-participant" method="post" class="form-modal"
+                            enctype="multipart/form-data" id="form1">
+                            <input type="text" name="id" id="update-id" hidden>
+                            <input type="text" name="oldCategory" id="old-category" hidden>
+                            <input type="file" accept="image/*" name="image" value="select" id="my-img"
+                                onchange="uploadAvatar(event)" hidden required>
+                            <div class="my-img-container">
+                                <img class="my-img" src="/img/pp.wedp" alt="">
+                                <div class="camera">
+                                    <i class="fa-solid fa-camera" id="camera"></i>
+                                </div>
+                            </div>
+                            <div style="display:grid;">
+                                <label for="name">Name:</label>
+                                <input type="text" name="participantName" class="input-text" id="text" required>
+                            </div>
+                            <div style="display:grid;">
+                                <label for="category">Category:</label>
+                                <input type="text" list="suggestions" class="input-text" id="category"
+                                    name="categoryName" required>
+                                <datalist id="suggestions">
+                                    <% categoryNames.forEach((name)=>{ %>
+                                        <option value="<%= name %>">
+                                            <% }); %>
+                                </datalist>
+                            </div>
+                            <div style="display:grid;">
+                                <label for="color">Color:</label>
+                                <input type="color" id="color" name="color" value="#404e68" class="input-text" required>
+                            </div>
+                            <button type="submit" class="submit">Add the participants</button>
+                        </form>
+                        <!-- </div> -->
+                    </div>
+                </section>
+                <section class="modal delt">
+                    <div class="modal-content">
+                        <form action="/admin/vote-auto" method="post" class="opt" id="form2">
+                            <h2 style="margin-right: 50px;">Add Votes:  </h2>
+                            <div class="input-group">
+                                <input type="button" value="-" class="button-minus" data-field="amount">
+                                <input type="number" name="amount" id="voteAmount" step="1" min="1" value="1"
+                                    class="quantity-field">
+                                <input type="button" value="+" class="button-plus" data-field="amount">
+                            </div>
+                        
+                            <input type="text" name="participant" id="sel-part" hidden>
+                            <input type="text" name="category" id="part-catg" hidden>
+                            <button class="yes" type="submit">Ok</button>
+                        </form>
+                        <!-- <button class="no">No</button> -->
+                    </div>
+                </section>
+                <section class="modal remv">
+                    <div class="modal-content">
+                        <form action="/admin/vote-red-auto" method="post" class="opt" id="form3">
+                            <h2 style="margin-right: 50px;">Remove Votes:  </h2>
+                            <div class="input-group">
+                                <input type="button" value="-" class="button-minus" data-field="amount">
+                                <input type="number" name="amount" id="voteAmount" step="1" min="1" value="1"
+                                    class="quantity-field">
+                                <input type="button" value="+" class="button-plus" data-field="amount">
+                            </div>
+                        
+                            <input type="text" name="participant" id="sel-part-rmv" hidden>
+                            <input type="text" name="category" id="part-catg-rmv" hidden>
+                            <button class="yes" type="submit">Ok</button>
+                        </form>
+                    </div>
+                </section>
+
+                <script>
+                    const inputField = document.getElementById('category');
+                    const datalist = document.getElementById('suggestions');
+
+                    inputField.addEventListener('input', () => {
+                        const enteredValue = inputField.value;
+                        const options = datalist.querySelectorAll('option');
+                        const optionValues = Array.from(options).map(option => option.value);
+
+                        if (!optionValues.includes(enteredValue)) {
+                            // The entered value is not in the datalist, so reset the input field
+                            inputField.value = '';
+                        }
+                    });
+
+                    function incrementValue(e) {
+                        e.preventDefault();
+                        var target = e.target;
+                        var fieldName = target.getAttribute('data-field');
+                        var parent = target.closest('div');
+                        var inputField = parent.querySelector('input[name=' + fieldName + ']');
+                        var currentVal = parseInt(inputField.value, 10);
+
+                        if (!isNaN(currentVal)) {
+
+                            inputField.value = currentVal + 1;
+                        } else {
+                            inputField.value = 0;
+                        }
+                    }
+
+                    function decrementValue(e) {
+                        e.preventDefault();
+                        var target = e.target;
+                        var fieldName = target.getAttribute('data-field');
+                        var parent = target.closest('div');
+                        var inputField = parent.querySelector('input[name=' + fieldName + ']');
+                        var currentVal = parseInt(inputField.value, 10);
+
+                        if (!isNaN(currentVal) && currentVal > 0) {;
+                            inputField.value = currentVal - 1;
+                        } else {
+                            inputField.value = 0;
+                        }
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var inputGroups = document.querySelectorAll('.input-group');
+
+                        inputGroups.forEach(function (inputGroup) {
+                            inputGroup.addEventListener('click', function (e) {
+                                if (e.target.classList.contains('button-plus')) {
+                                    incrementValue(e);
+                                } else if (e.target.classList.contains('button-minus')) {
+                                    decrementValue(e);
+                                }
+                            });
+                        });
+                    });
+
+
+
+                </script>
+                <script src="/js/index.js"></script>
+                <script src="/js/myIndex.js" defer></script>
+                <!-- Bootstrap -->
+                <!-- Sparkline Chart -->
+                <!-- App -->
+                </body>
+
+                </html>

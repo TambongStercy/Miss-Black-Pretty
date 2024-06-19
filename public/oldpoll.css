@@ -1,0 +1,26 @@
+.heading{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-top: 10%;
+}
+.heading h2{
+    font-weight: bold;
+    color: azure;
+}
+#categories{
+    display: inline-flex;
+    flex-direction: row !important; 
+    flex-wrap: wrap;
+    gap: 100px !important;
+    justify-content: space-evenly;
+}
+.card{
+    border-radius: 30px;
+    margin-bottom: 5%;
+}
+.card button{
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}

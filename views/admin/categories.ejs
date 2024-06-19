@@ -1,0 +1,116 @@
+<%- include("partials/header") %>
+
+    <section class="scrollable wrapper">
+        <div class="row">
+            <section>
+                <div class="wrapper">
+                    <div class="title">
+                        Categories
+                    </div>
+                    <div class="t-bg">
+                        <table>
+                            <thead>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Participants</th>
+                                <th>Color</th>
+                                <th>Money</th>
+                                <th>Votes</th>
+                                <th>Modify</th>
+                            </thead>
+                            <tbody>
+                                <% if(categories){ %>
+                                    <% categories.forEach((categ)=>{ %>
+                                        <% const {_id, name, picture, participantsCount, totalVotes}=categ; %>
+                                            <tr>
+                                                <td class="prdt-id">
+                                                    <%=_id%>
+                                                </td>
+                                                <td class="prdt-image"><img src="<%=picture%>"></td>
+                                                <td class="prdt-name">
+                                                    <%= name %>
+                                                </td>
+                                                <td class="prdt-part">
+                                                    <%= participantsCount %>
+                                                </td>
+                                                <td class="prdt-color">
+                                                    <div class="item-color" style="background-color: purple;"></div>
+                                                </td>
+                                                <td class="prdt-price">
+                                                    <%= totalVotes*100 %> XFA
+                                                </td>
+                                                <td class="prdt-quantity">
+                                                    <%= totalVotes %>
+                                                </td>
+                                                <td>
+                                                    <button class="update">update</button>
+                                                    <button class="delete"><a class="view" href="/admin/category?name=<%= encodeURIComponent(name) %>">view</a></button>
+                                                    
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                            </tbody>
+                        </table>
+                        <button class="add-btn">+ Create category</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    </section>
+    <!-- <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> -->
+    </section>
+    <!-- /.vbox -->
+    </section>
+    <section class="modal mody">
+        <div class="modal-content">
+            <h1 class="sub-title">Create category</h1>
+            <i class="uil uil-times modal-close"></i>
+            <!-- <div class="my-img-container"> -->
+            <form action="/admin/update-category?category=" method="post" class="form-modal"
+                enctype="multipart/form-data" id="form1">
+                <input type="text" name="id" id="update-id" hidden>
+                <input type="file" accept="image/*" name="image" value="select" id="my-img"
+                    onchange="uploadAvatar(event)" hidden required>
+                <div class="my-img-container">
+                    <img class="my-img" src="/img/pps.jpg" alt="">
+                    <div class="camera">
+                        <i class="fa-solid fa-camera" id="camera"></i>
+                    </div>
+                </div>
+                <div style="display:grid;">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="input-text" id="text" required>
+                </div>
+                <div style="display:grid;">
+                    <label for="color">Color:</label>
+                    <input type="color" id="color" name="color" value="#404e68" class="input-text" required>
+                </div>
+                <button type="submit" class="submit">Create Category</button>
+            </form>
+            <!-- </div> -->
+        </div>
+    </section>
+    <section class="modal delt">
+        <div class="modal-content">
+            This action will completely delete the item from the shop. Are you sure you want to delete it?
+
+            <form action="/admin/delete" method="post" class="opt" id="form2">
+                <input type="text" name="id" id="delete-id" hidden>
+                <button class="yes" type="submit">Yes</button>
+                <button class="no">No</button>
+            </form>
+        </div>
+    </section>
+    <script>
+    </script>
+    <script src="/js/index.js"></script>
+    <script src="/js/categ.js" defer></script>
+    <!-- Bootstrap -->
+    <!-- Sparkline Chart -->
+    <!-- App -->
+    </body>
+
+    </html>

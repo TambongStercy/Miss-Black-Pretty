@@ -1,0 +1,167 @@
+<%- include("partials/header") %>
+
+
+
+
+    <% const { totalParticipants, totalVotes, topVotedParticipants, topVotedCategories, }=stats %>
+
+        <section class="scrollable wrapper">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="title">
+                        Dashboard
+                    </div>
+                    <!-- <section class="panel">
+                <form>
+                    <textarea class="form-control input-lg no-border" rows="2" placeholder="What are you doing..."></textarea>
+                </form>
+                <footer class="panel-footer bg-light lter">
+                    <button class="btn btn-info pull-right">POST</button>
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-location-arrow"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-camera"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-video-camera"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-microphone"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </footer>
+            </section> -->
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="">
+                                        <div>
+                                            Total participants
+                                            <div class="title">
+                                                <!-- <i class="fa fa-cog"></i> -->
+                                                <%= totalParticipants %>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            Total votes
+                                            <div class="title">
+                                                <!-- <i class="fa fa-cog"></i> -->
+                                                <%= totalVotes - 15827 %>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            Total profit
+                                            <div class="title">
+                                                <!-- <i class="fa fa-cog"></i> -->
+                                                <%= (totalVotes - 15827)*100 %> XFA
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <h4>Most voted candidate</h4>
+                                    <div class="clearfix m-b">
+                                        <small class="text-muted pull-right l-time">
+                                        </small>
+                                        <a href="#" class="thumb-sm pull-left m-r">
+                                            <img src="<%= topVotedParticipants[0].picture %>" class="img-circle">
+                                        </a>
+                                        <%= topVotedParticipants[0].name.toUpperCase() %>
+                                            <br>
+                                            Votes: <%= topVotedParticipants[0].votes %>
+                                                <!-- <br> -->
+                                                <!-- Category: <%= topVotedParticipants[0].category %> -->
+                                                <div class="clear">
+                                                    <a href="/admin/payment">
+                                                        <strong class="l-name"></strong>
+                                                    </a>
+                                                    <small class="block text-muted l-prdt"></small>
+                                                </div>
+                                    </div>
+                                    <!-- <div class="pull-in bg-light clearfix m-b-n">
+                                <p class="m-t-sm m-b text-center animated bounceInDown">
+                                    <i class="fa fa-map-marker text-danger fa fa-4x" data-toggle="tooltip" title="checked in at Newyork"></i>
+                                </p>
+                            </div> -->
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <% if(topVotedParticipants.length>2){ %>
+                        <section class="panel">
+                            <h1>Most voted candidates</h1>
+                            <div class="text-center wrapper">
+                                <div class="sparkline inline" data-type="pie" data-height="150"
+                                    data-slice-colors="['#00e100','#0000e1','#e10000']">
+                                    <%= topVotedParticipants[0].votes %>,<%= topVotedParticipants[1].votes %>,<%=
+                                                topVotedParticipants[2].votes %>
+                                                <!-- 10,7,8 -->
+                                </div>
+                            </div>
+                            <ul class="list-group no-radius">
+                                <li class="list-group-item">
+                                    <span class="pull-right">
+                                        <%= topVotedParticipants[0].votes%>
+                                    </span>
+                                    <span class="label" style="background-color: green ">1</span>
+                                    <%= topVotedParticipants[0].name %>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="pull-right">
+                                        <%= topVotedParticipants[1].votes%>
+                                    </span>
+                                    <span class="label" style="background-color: blue">2</span>
+                                    <%= topVotedParticipants[1].name %>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="pull-right">
+                                        <%= topVotedParticipants[2].votes%>
+                                    </span>
+                                    <span class="label" style="background-color: red">3</span>
+                                    <%= topVotedParticipants[2].name %>
+                                </li>
+                            </ul>
+                        </section>
+                        <% } %>
+                </div>
+            </div>
+        </section>
+        <script>
+
+            
+
+
+
+        </script>
+        </section>
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+        </section>
+        <!-- /.vbox -->
+        </section>
+        <script src="/js/index.js"></script>
+        <!-- Bootstrap -->
+        <!-- Sparkline Chart -->
+        <!-- App -->
+        </body>
+
+        </html>

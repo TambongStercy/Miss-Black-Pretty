@@ -1,0 +1,306 @@
+<%- include("partials/header") %>
+
+
+  <main>
+    <div class="heading">
+      <div class="line"></div>
+      <h2>Catégories</h2>
+      <div class="line"></div>
+    </div>
+    <div id="categories">
+      <% categories.forEach(category=> { %>
+        <div class="card" style="width: 18rem;">
+          <img src="<%= category.picture %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black;">
+              <%= category.name %>
+            </h5>
+            <a href="/user/candidates?name=<%= category.name %>" class="btn btn-primary" style="color: black;">Voir les participants</a>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+    <!-- <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure artiste masculin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure artiste féminin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Chanson populaire</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleur collaboration</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure revelation musicale</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure danseur(seuse)</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure label de production</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure beatmaker</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure manager</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure marque de vêtements street wear</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure animateur(trice) TV</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure animateur(trice) radio/h5>
+            <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure réalisateur</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure plateforme digitale</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure concept evenementiel</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure community manager</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure manager night club(lounge)</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure DJ platine</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure DJ atalaku</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure model photo masculin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure model photo féminin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure mannequin masculin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure photographe</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure competition de mode</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure web comédienne</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure styliste</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure mannequin féminin</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure infographe</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Artiste féminin new comer</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Web comédien new comer</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Web commédienne new comer</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Personnalite publique d'Afrique</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure influenceur(ceuse) de l'année</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure jeune entrepreneur</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/assets/img/Danseur.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Meilleure concours de beauté</h5>
+          <a href="/user/candidates" class="btn btn-primary" style="color: black;">Voir les participants</a>
+        </div>
+      </div> -->
+
+
+  </main>
+
+  <%- include("partials/footer") %>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/pay.css">
+    <link rel="stylesheet" href="/main.css">
+    <title>SGBC Awards | pay</title>
+</head>
+
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="/user/home"><img src="/img/Logo.png" alt="Logo SGBC events"></a>
+            <h5 class="btn"><a href="/user/home">Accueil</a></h5>
+            <h5 class="btn"><a href="#services">Services</a></h5>
+            <h5 class="btn"><a href="#about">A propos</a></h5>
+            <h5 class="btn"><a href="#contact">Contact</a></h5>
+            <a href="#"><button class="NavBtn"><span class="text">Billeterie</span> </button></a>
+            <a href="/user/categories"><button class="NavBtn"><span class="text">Vote</span></button></a>
+            <i class="ri-menu-4-line"></i>
+        </nav>
+    </header>
+
+    <div class="pay-content">
+        <div class="modal">
+            <form class="form">
+                <div class="payment--options">
+                    <button name="paypal" type="button" onclick="showCard()">
+                        <img style="width: 50%;"
+                            src="https://freepngimg.com/thumb/credit_card/25464-1-credit-card-visa-and-master-card-thumb.png"
+                            alt="" srcset="">
+                    </button>
+                    <!-- <button name="paypal" type="button" onclick="showPayPal()">
+                        <img style="width: 50%;" src="/img/paypal.png" alt="" srcset="">
+                    </button> -->
+                    <button name="apple-pay" type="button">
+                        <img style="width: 60%;"
+                            src="https://download.logo.wine/logo/Orange_Money/Orange_Money-Logo.wine.png"
+                            onclick="showOM()">
+                    </button>
+                    <button name="google-pay" type="button" onclick="showMOMO()">
+                        <img style="width: 60%; border-radius: 10px;"
+                            src="https://warehouse.canal-overseas.com/content/0001/07/ed21f02f1a158b1f43e5e57e640ec727f30ec0d1.png"
+                            alt="" srcset="">
+                    </button>
+                </div>
+
+                <div id="show">
+                    <h2 class="pay-title">MTN MOMO</h2>
+                    <div class="separator">
+                        <hr class="line">
+                        <hr class="line">
+                        <hr class="line">
+                    </div>
+                    <div class="credit-card-info--form">
+                        <div class="input_container">
+                            <label for="password_field" class="input_label">MOMO Number</label>
+                            <input id="password_field" class="input_field" type="number" name="meta[mobile_number]"
+                                title="Inpit title" placeholder="675757575">
+                        </div>
+                    </div>
+                    <button class="purchase--btn" type="submit">Checkout</button>
+                    <input type="hidden" name="public_key" value="FLWPUBK_TEST-7a26e3d6825f82336429de1696c546bd-X" />
+                    <input type="hidden" name="tx_ref" value="<%= tx_ref %>" />
+                    <input type="hidden" name="amount" value="100"/>
+                    <input type="hidden" name="currency" value="XAF" />
+                    <input type="hidden" name="redirect_url"
+                        value="http://localhost:3000/user/vote?participant=<%= participant %>" />
+                    <input type="hidden" name="meta[token]" value="54" />
+                    <input type="hidden" name="customer[name]" value="Jesse Pinkman" />
+                    <input type="hidden" name="customer[email]" value="jessepinkman@walterwhite.org" />
+                    <input type="hidden" name="meta[sender_country]" value="Cameroon" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script>
+        function showCard() {
+            document.querySelector("#show").innerHTML =
+            `
+            <h2 class="pay-title">Card</h2>
+            <div class="separator">
+                <hr class="line">
+                <hr class="line">
+                <hr class="line">
+            </div>
+            <div class="credit-card-info--form">
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Card holder full name</label>
+                    <input id="password_field" class="input_field" type="text" name="input-name"
+                        title="Inpit title" placeholder="Enter your full name">
+                </div>
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Card Number</label>
+                    <input id="password_field" class="input_field" type="number" name="input-name"
+                        title="Inpit title" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Expiry Date / CVV</label>
+                    <div class="split">
+                        <input id="password_field" class="input_field" type="text" name="input-name"
+                            title="Expiry Date" placeholder="01/23">
+                        <input id="password_field" class="input_field" type="number" name="cvv" title="CVV"
+                            placeholder="CVV">
+                    </div>
+                </div>
+            </div>
+            <button class="purchase--btn" type="submit">Checkout</button>
+            `;
+        }
+
+        // function showPayPal() {
+        // }
+
+        function showOM() {
+            document.querySelector("#show").innerHTML =
+                `
+                <h2 class="pay-title">ORANGE MONEY</h2>
+                <div class="separator">
+                    <hr class="line">
+                    <hr class="line">
+                    <hr class="line">
+                </div>   
+                <div class="credit-card-info--form">
+                    <div class="input_container">
+                        <label for="password_field" class="input_label">OM Number</label>
+                        <input id="password_field" class="input_field" type="number" name="input-name"
+                            title="Inpit title" placeholder="675757575">
+                    </div>
+                </div>
+                <button class="purchase--btn" type="submit">Checkout</button>
+            `;
+        }
+
+        function showMOMO() {
+            document.querySelector("#show").innerHTML =
+                `
+                <h2 class="pay-title">MTN MOMO</h2>
+                <div class="separator">
+                    <hr class="line">
+                    <hr class="line">
+                    <hr class="line">
+                </div>   
+                <div class="credit-card-info--form">
+                    <div class="input_container">
+                        <label for="password_field" class="input_label">MOMO Number</label>
+                        <input id="password_field" class="input_field" type="number" name="input-name"
+                            title="Inpit title" placeholder="675757575">
+                    </div>
+                </div>
+                <button class="purchase--btn" type="submit">Checkout</button>
+            `;
+
+        }
+
+    </script>
+
+    <%- include("partials/footer") %>

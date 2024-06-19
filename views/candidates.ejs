@@ -1,0 +1,72 @@
+<%- include("partials/header") %>
+
+    <main>
+        <div class="heading">
+            <div class="line"></div>
+            <h2>
+                Miss Black and pretty
+            </h2>
+            <div class="line"></div>
+        </div>
+        <div id="categories">
+            <% participants.forEach(participant=> { console.log(participant)%>
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= participant.picture %>" class="card-img-top" alt="..." style="border-top: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: black;">
+                            <%= participant.name %>
+                        </h5>
+                        <h5>Votes: <%= participant.votes.length %> voix</h5>
+                        <a href="/user/individual?categoryName=<%= encodeURIComponent(name) %>&participantName=<%= encodeURIComponent(participant.name) %>"
+                            class="btn btn-primary" style="color: black;">Voter</a>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+
+    </main>
+    <!-- <div id="categories">
+        <div class="card" style="width: 18rem;">
+            <img src="/img/CEO.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" style="color: black;">Georges Yvan</h5>
+                <h5>Votes: 100 voix</h5>
+                <a href="/user/individual" class="btn btn-primary" style="color: black;">Voter</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="categories">
+        <div class="card" style="width: 18rem;">
+            <img src="/img/CEO.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" style="color: black;">Georges Yvan</h5>
+                <h5>Votes: 100 voix</h5>
+                <a href="/user/individual" class="btn btn-primary" style="color: black;">Voter</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="categories">
+        <div class="card" style="width: 18rem;">
+            <img src="/img/CEO.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" style="color: black;">Georges Yvan</h5>
+                <h5>Votes: 100 voix</h5>
+                <a href="/user/individual" class="btn btn-primary" style="color: black;">Voter</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="categories">
+        <div class="card" style="width: 18rem;">
+            <img src="/img/CEO.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" style="color: black;">Georges Yvan</h5>
+                <h5>Votes: 100 voix</h5>
+                <a href="/user/individual" class="btn btn-primary" style="color: black;">Voter</a>
+            </div>
+        </div>
+    </div> -->
+
+    <%- include("partials/footer") %>

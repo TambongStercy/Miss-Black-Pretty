@@ -1,0 +1,139 @@
+<%- include("partials/header") %>
+
+    <section class="scrollable wrapper">
+        <div class="row">
+            <section>
+                <div class="wrapper">
+                    <div class="title">
+                        Participants
+                    </div>
+                    <div class="t-bg">
+                        <table>
+                            <thead>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Color</th>
+                                <th>Money</th>
+                                <th>Votes</th>
+                                <th>Modify</th>
+                            </thead>
+                            <tbody>
+                                <% if(participants){ %>
+                                    <% participants.forEach((part)=>{ %>
+                                        <% const {_id, name, picture, votes, category}=part; %>
+                                            <tr>
+                                                <td class="prdt-id">
+                                                    <%=_id%>
+                                                </td>
+                                                <td class="prdt-image"><img src="<%=picture%>"></td>
+                                                <td class="prdt-name">
+                                                    <%= name %>
+                                                </td>
+                                                <td class="prdt-catg">
+                                                    <%= category %>
+                                                </td>
+                                                <td class="prdt-color">
+                                                    <div class="item-color" style="background-color: purple;"></div>
+                                                </td>
+                                                <td class="prdt-price">
+                                                    <%= votes.length*100 %> XFA
+                                                </td>
+                                                <td class="prdt-quantity">
+                                                    <%= votes.length %>
+                                                </td>
+                                                <td>
+                                                    <button class="update">update</button>
+                                                    <!-- <button class="delete">delete</button> -->
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                            </tbody>
+                        </table>
+                        <button class="add-btn">+ Add new participant</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    </section>
+    <!-- <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> -->
+    </section>
+    <!-- /.vbox -->
+    </section>
+    
+    <section class="modal mody">
+        <div class="modal-content">
+            <h1 class="sub-title">Add new participants</h1>
+            <i class="uil uil-times modal-close"></i>
+            <!-- <div class="my-img-container"> -->
+            <form action="/admin/update-participant" method="post" class="form-modal" enctype="multipart/form-data">
+                <input type="text" name="id" id="update-id" hidden>
+                <input type="text" name="oldCategory" id="old-category" hidden>
+                <input type="file" accept="image/*" name="image" value="select" id="my-img"
+                    onchange="uploadAvatar(event)" hidden required>
+                <div class="my-img-container">
+                    <img class="my-img" src="/img/pp.wedp" alt="">
+                    <div class="camera">
+                        <i class="fa-solid fa-camera" id="camera"></i>
+                    </div>
+                </div>
+                <div style="display:grid;">
+                    <label for="name">Name:</label>
+                    <input type="text" name="participantName" class="input-text" id="text" required>
+                </div>
+                <div style="display:grid;">
+                    <label for="category">Category:</label>
+                    <input type="text" list="suggestions" class="input-text" id="category" name="categoryName" required>
+                    <datalist id="suggestions">
+                        <% categoryNames.forEach((name)=>{ %>
+                            <option value="<%= name %>">
+                                <% }); %>
+                    </datalist>
+                </div>
+                <div style="display:grid;">
+                    <label for="color">Color:</label>
+                    <input type="color" id="color" name="color" value="#404e68" class="input-text" required>
+                </div>
+                <button type="submit" class="submit">Add the participants</button>
+            </form>
+            <!-- </div> -->
+        </div>
+    </section>
+    <section class="modal delt">
+        <div class="modal-content">
+            This action will completely delete the item from the shop. Are you sure you want to delete it?
+
+            <form action="/admin/delete" method="post" class="opt">
+                <input type="text" name="id" id="delete-id" hidden>
+                <button class="yes" type="submit">Yes</button>
+                <button class="no">No</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        const inputField = document.getElementById('category');
+        const datalist = document.getElementById('suggestions');
+
+        inputField.addEventListener('input', () => {
+            const enteredValue = inputField.value;
+            const options = datalist.querySelectorAll('option');
+            const optionValues = Array.from(options).map(option => option.value);
+
+            if (!optionValues.includes(enteredValue)) {
+                // The entered value is not in the datalist, so reset the input field
+                inputField.value = '';
+            }
+        });
+    </script>
+
+    <script src="/js/index.js"></script>
+    <script src="/js/myIndex.js" defer></script>
+    <!-- Bootstrap -->
+    <!-- Sparkline Chart -->
+    <!-- App -->
+    </body>
+
+    </html>
