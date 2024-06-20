@@ -6,8 +6,8 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 
-const uri = 'mongodb://127.0.0.1:27017/MBAP';
-// const uri = process.env.MONGODB_URI;
+// const uri = 'mongodb://127.0.0.1:27017/MBAP';
+const uri = process.env.MONGODB_URI;
 
 const app = express();
 
