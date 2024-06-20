@@ -33,7 +33,7 @@ async function vote(req, res) {
         // You have set email as email as category and name as participant
 
         let paymentLink;
-        const redirect_url = `${req.protocol}://${req.get('host')}/user/validation?participant=${encodeURIComponent(participant)}&category= ${encodeURIComponent(category)}&amount=${amount} `
+        const redirect_url = `${req.protocol}://${req.get('host')}/user/validation?participant=${encodeURIComponent(participant)}&category=${encodeURIComponent(category)}&amount=${amount}`
 
         if (paymentMethod === "card") {
 
