@@ -64,7 +64,6 @@
     }
   </style>
 
-
   <main>
     <div class="heading">
       <div class="line"></div>
@@ -85,19 +84,23 @@
             <input type="number" name="amount" id="voteAmount" step="1" min="1" value="1" class="quantity-field">
             <input type="button" value="+" class="button-plus" data-field="amount">
           </div>
-          <a href="/user/vote?participant=<%= encodeURIComponent(participant.name) %>&category=<%= encodeURIComponent(participant.category) %>&amount=1"
-            class="btn btn-primary" style="color: black;" id="voteLink">Voter</a>
+
+          <div>
+            <label for="paymentMethod">Choisir le mode de paiement</label><br>
+            <select id="paymentMethod" name="paymentMethod">
+              <option value="momo">Mobile Money</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+
+          <a href="/user/vote?participant=<%= encodeURIComponent(participant.name) %>&category=<%= encodeURIComponent(participant.category) %>&amount=1&paymentMethod=momo"
+            class="btn btn-primary" style="color: black;" id="voteLink" disabled>Voter</a>
         </div>
       </div>
     </div>
-
   </main>
 
-
-
   <script type="">
-
-
     function incrementValue(e) {
       e.preventDefault();
       var target = e.target;
@@ -108,10 +111,7 @@
 
       if (!isNaN(currentVal)) {
         var voteLink = document.getElementById('voteLink');
-        
-        voteLink.href = "/user/vote?participant=<%= escape(participant.name) %>&category=<%= escape(participant.category) %>&amount=" + (currentVal + 1);
-        
-
+        voteLink.href = "/user/vote?participant=<%= escape(participant.name) %>&category=<%= escape(participant.category) %>&amount=" + (currentVal + 1)+ "&paymentMethod=" + document.getElementById('paymentMethod').value;
         inputField.value = currentVal + 1;
       } else {
         inputField.value = 1;
@@ -128,17 +128,30 @@
 
       if (!isNaN(currentVal) && currentVal > 1) {
         var voteLink = document.getElementById('voteLink');
-
-        voteLink.href = "/user/vote?participant=<%= escape(participant.name) %>&category=<%= escape(participant.category) %>&amount=" + (currentVal - 1);
-
+        voteLink.href = "/user/vote?participant=<%= escape(participant.name) %>&category=<%= escape(participant.category) %>&amount=" + (currentVal - 1)+ "&paymentMethod=" + document.getElementById('paymentMethod').value;
         inputField.value = currentVal - 1;
       } else {
         inputField.value = 1;
       }
     }
 
+    function updateVoteButtonState() {
+      const voteLink = document.getElementById('voteLink');
+      const paymentMethod = document.getElementById('paymentMethod');
+      const voteAmount = document.getElementById('voteAmount').value;
+      const selectedPaymentMethod = paymentMethod.value;
+
+      if (selectedPaymentMethod) {
+        voteLink.href = `/user/vote?participant=<%= escape(participant.name) %>&category=<%= escape(participant.category) %>&amount=${voteAmount}&paymentMethod=${selectedPaymentMethod}`;
+        voteLink.removeAttribute('disabled');
+      } else {
+        voteLink.setAttribute('disabled', 'true');
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       var inputGroups = document.querySelectorAll('.input-group');
+      var paymentMethod = document.getElementById('paymentMethod');
 
       inputGroups.forEach(function (inputGroup) {
         inputGroup.addEventListener('click', function (e) {
@@ -149,19 +162,16 @@
           }
         });
       });
+
+      paymentMethod.addEventListener('change', updateVoteButtonState);
+
+      document.getElementById('voteAmount').addEventListener('input', updateVoteButtonState);
     });
 
-   
-    <% if (alerte && alerte == true ) { %>
-
-      const msg = "Payment was successfully made";
-
+  <% if (alerte && alerte == true) { %>
+    const msg = "Payment was successfully made";
       alert(msg);
-
-    <% }  %>
-
-    // if()
-
+  <% }  %>
   </script>
 
   <%- include("partials/footer") %>
