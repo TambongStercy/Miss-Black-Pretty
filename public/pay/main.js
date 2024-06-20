@@ -1,6 +1,6 @@
 
 
-const serverUrl = 'http://localhost:3000/pay'
+const serverUrl = 'https://miss-black-pretty.onrender.com/pay'
 let pendingId = '';
 
 // Define networks by country
